@@ -1,2 +1,2 @@
-insert into products (product_name, price, description, image, stock)
-values ("Elice14", "eliceTan@gmail.com", "eliceTan", "Elice Tan", 84055429)
+insert into addresses (building_name, street_name, unit_number, postal_code, country)
+values ("Montague House", "70 Bryantwood Rd", "Flat 1", "N1C 4BN", "London, UK")
