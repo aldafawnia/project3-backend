@@ -1,0 +1,28 @@
+@layout('base')
+@section('content')
+<h1> User Information </h1>
+
+<table class="table">
+        <tr>
+          <th>ID</th>
+          <th>Full Name</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Contact Number</th>
+          <th>Addresses</th>
+        </tr>
+        @each(user in users)
+          <tr>
+            <td>{{user.id}}</td>
+            <td>{{user.full_name}}</td>
+            <td>{{user.username}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.contact_number}}</td>
+            @each(address in user.addresses)
+            <td>{{address.building_name}} {{address.street_name}} {{address.unit_number}} {{address.postal_code}} {{address.country}}</td>
+          </tr>
+        @endeach
+        @endeach
+</table>
+
+@endsection

@@ -17,3 +17,5 @@
 const Route = use('Route')
 
 Route.on('/').render('welcome')
+Route.get('/users_api', 'UserController.api')
+Route.get('/users', 'UserController.index' )
