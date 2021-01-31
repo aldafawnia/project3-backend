@@ -18,6 +18,10 @@ class UserController {
       'users': users.toJSON(),
     })
   }
+
+  async create({view}){
+    return view.render('userscreate')
+  }
 }
 
 module.exports = UserController
