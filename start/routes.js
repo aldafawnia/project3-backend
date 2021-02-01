@@ -18,6 +18,7 @@ const Route = use('Route')
 
 Route.on('/').render('welcome')
 Route.get('/users_api', 'UserController.api')
-Route.get('/users', 'UserController.index' )
+Route.get('/users', 'UserController.index').as('show_all_users')
 
 Route.get('/users/create', 'UserController.create')
+Route.post('/users/create', 'UserController.processCreate')

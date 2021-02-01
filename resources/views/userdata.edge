@@ -19,7 +19,7 @@
             <td>{{user.email}}</td>
             <td>{{user.contact_number}}</td>
             @each(address in user.addresses)
-            <td>{{address.building_name}} {{address.street_name}} {{address.unit_number}} {{address.postal_code}} {{address.country}}</td>
+            <td>{{address.building_name}}, {{address.street_name}}, {{address.unit_number}}, {{address.postal_code}}, {{address.country}}</td>
           </tr>
         @endeach
         @endeach
