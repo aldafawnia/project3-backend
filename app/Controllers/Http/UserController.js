@@ -43,6 +43,13 @@ class UserController {
     response.route('show_all_users');
     // response.json(userData);
   }
+
+  async update({view,params}){
+    let user = await Users.find(params.users_id);
+    return view.render('usersupdate',{
+      'user': user.toJSON()
+    })
+  }
 }
 
 module.exports = UserController

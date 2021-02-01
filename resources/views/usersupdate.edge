@@ -1,0 +1,47 @@
+@layout('base')
+@section('content')
+<h1> Edit User: {{user.full_name}} </h1>
+
+<form method="POST">
+  {{ csrfField() }}
+  <div>
+    <label class="form-label">Full Name:</label>
+    <input type='text' name='fullname' class="form-control" value="{{user.full_name}}"/>
+  </div>
+  <div>
+    <label class="form-label">Username:</label>
+    <input type='text' name='username' class="form-control" value="{{user.username}}"/>
+  </div>
+  <div>
+    <label class="form-label">Email:</label>
+    <input type='text' name='email' class="form-control" value="{{user.email}}"/>
+  </div>
+  <div>
+    <label class="form-label">Password:</label>
+    <input type='password' name='password' placeholder="more than 6 characters" class="form-control" value="{{user.password}}"/>
+  </div>
+  <div>
+    <label class="form-label">Contact Number:</label>
+    <input type='text' name='contact' class="form-control" value="{{user.contact_number}}"/>
+  </div>
+  <h2> Address: </h2>
+  <div>
+    <label class="form-label">Building Name:</label>
+    <input type='text' name='building_name' class="form-control" value="{{address.building_name}}"/>
+    <label class="form-label">Street Name:</label>
+    <input type='text' name='street_name' class="form-control" value="{{address.street_name}}"/>
+  </div>
+  <div>
+    <label class="form-label">Unit Number:</label>
+    <input type='text' name='unit_number' class="form-control" value="{{address.unit_number}}"/>
+    <label class="form-label">Postal Code:</label>
+    <input type='text' name='postal_code' class="form-control" value="{{address.postal_code}}"/>
+  </div>
+  <div>
+    <label class="form-label">Country:</label>
+    <input type='text' name='country' class="form-control" value="{{address.country}}"/>
+  </div>
+  <input type='submit'/>
+</form>
+
+@endsection
