@@ -1,12 +1,12 @@
 @layout('base')
 @section('content')
-<h1> Edit User: {{user[0].full_name}} </h1>
+<h1> Edit User: {{user.full_name}} </h1>
 
 <form method="POST">
   {{ csrfField() }}
   <div>
     <label class="form-label">Full Name:</label>
-    <input type='text' name='fullname' class="form-control" value="{{user[0].full_name}}"/>
+    <input type='text' name='fullname' class="form-control" value="{{user.full_name}}"/>
   </div>
   <!-- <div>
     <label class="form-label">Username:</label>
@@ -14,19 +14,20 @@
   </div> -->
   <div>
     <label class="form-label">Email:</label>
-    <input type='text' name='email' class="form-control" value="{{user[0].email}}"/>
+    <input type='text' name='email' class="form-control" value="{{user.email}}"/>
   </div>
   <div>
     <label class="form-label">Password:</label>
-    <input type='password' name='password' placeholder="more than 6 characters" class="form-control" value="{{user[0].password}}"/>
+    <input type='password' name='password' placeholder="more than 6 characters" class="form-control" value="{{user.password}}"/>
   </div>
   <div>
     <label class="form-label">Contact Number:</label>
-    <input type='text' name='contact' class="form-control" value="{{user[0].contact_number}}"/>
+    <input type='text' name='contact' class="form-control" value="{{user.contact_number}}"/>
   </div>
 
-  @each(address in user[0].addresses)
-  <h2> Address: </h2>
+  <!-- @each(address in user[0].addresses) -->
+  <!-- <h2> Address: </h2>
+  <input type="hidden" name="address_id" value="{{address.id}}"/>
   <div>
     <label class="form-label">Building Name:</label>
     <input type='text' name='building_name' class="form-control" value="{{address.building_name}}"/>
@@ -43,7 +44,7 @@
     <label class="form-label">Country:</label>
     <input type='text' name='country' class="form-control" value="{{address.country}}"/>
   </div>
-  @endeach
+  @endeach -->
   <input type='submit'/>
 </form>
 

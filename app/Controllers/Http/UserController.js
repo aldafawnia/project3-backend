@@ -45,13 +45,33 @@ class UserController {
   }
 
   async update({view,params}){
-    // let user = await Users.find(params.users_id);
-    let address = await Addresses.find(params.users_id)
-    let user = await address.users().with('addresses').fetch()
+    let user = await Users.find(params.id);
+    // let address = await Addresses.find(params.users_id)
+    // let user = await address.users().with('addresses').fetch()
     return view.render('usersupdate',{
       'user': user.toJSON()
     })
     // return user.toJSON()
+  }
+
+  async processUpdate({request,response,params}){
+    let updateUser = await Users.find(params.id);
+    let userData = request.post();
+    updateUser.full_name = userData.fullname;
+    updateUser.email = userData.email;
+    updateUser.password = userData.password;
+    updateUser.contact_number = userData.contact;
+    await updateUser.save();
+    // let updateAddress = await updateUser.addresses().fetch()
+    // let updateAddressJ = updateAddress.toJSON()
+    // updateAddress[0].building_name = userData.building_name;
+    // updateAddress[0].street_name = userData.street_name;
+    // updateAddress[0].unit_number = userData.unit_number;
+    // updateAddress[0].postal_code = userData.postal_code;
+    // updateAddress[0].country = userData.country;
+    // await updateAddress.save();
+    // await updateUser.addresses().attach(updateAddress.id)
+    response.route('show_all_users');
   }
 }
 

@@ -8,6 +8,7 @@
 
 <table class="table">
         <tr>
+          <th></th>
           <th>ID</th>
           <th>Full Name</th>
           <th>Username</th>
@@ -17,6 +18,9 @@
         </tr>
         @each(user in users)
           <tr>
+          <td> <a href="{{ route('update_user', {id:user.id})}}">
+          <button type="button" class="btn btn-primary">Update</button> </a>
+          </td>
             <td>{{user.id}}</td>
             <td>{{user.full_name}}</td>
             <td>{{user.username}}</td>
