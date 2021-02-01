@@ -45,10 +45,13 @@ class UserController {
   }
 
   async update({view,params}){
-    let user = await Users.find(params.users_id);
+    // let user = await Users.find(params.users_id);
+    let address = await Addresses.find(params.users_id)
+    let user = await address.users().with('addresses').fetch()
     return view.render('usersupdate',{
       'user': user.toJSON()
     })
+    // return user.toJSON()
   }
 }
 
