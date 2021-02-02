@@ -74,14 +74,22 @@ class UserController {
     response.route('show_all_users');
   }
 
-  async delete({params}){
+  async delete({params, response}){
     let user = await Users.find(params.id);
-    return render.view('users/usersdelete',{
-      'user': user.toJSON()
-    })
+    let userAddress = await user.addresses().fetch()
+    let user_address = await userAddress.toJSON()
+    let addressesId = []
+    for (let useraddress of user_address){
+      addressesId.push(useraddress.id)
+    }
+    await user.addresses().detach()
+    await user.delete()
+    for (let address of addressesId){
+      let addresses = await Addresses.find(address);
+      await addresses.delete()
+    }
+    response.route('show_all_users');
   }
-
-  // async processDelete({ })
 }
 
 module.exports = UserController

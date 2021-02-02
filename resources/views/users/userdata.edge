@@ -9,6 +9,7 @@
 <table class="table">
         <tr>
           <th></th>
+          <th></th>
           <th>ID</th>
           <th>Full Name</th>
           <th>Username</th>
@@ -22,6 +23,9 @@
           <tr>
           <td> <a href="{{ route('update_user', {id:user.id})}}">
           <button type="button" class="btn btn-primary">Update</button> </a>
+          </td>
+          <td> <a href="{{ route('delete_user', {id:user.id})}}">
+          <button type="button" class="btn btn-danger">Delete</button> </a>
           </td>
             <td>{{user.id}}</td>
             <td>{{user.full_name}}</td>
