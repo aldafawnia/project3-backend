@@ -28,3 +28,4 @@ Route.post('/users/create', 'UserController.processCreate').as('create_users')
 Route.get('/users/:id/update', 'UserController.update')
 Route.post('/users/:id/update', 'UserController.processUpdate').as('update_user')
 
+Route.get('/users/:id/delete', 'UserController.delete')

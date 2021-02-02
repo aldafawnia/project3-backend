@@ -14,13 +14,13 @@ class UserController {
   async index({view}){
     // let users = await Users.all()
     let users = await Users.query().with('addresses').fetch()
-    return view.render('userdata',{
+    return view.render('users/userdata',{
       'users': users.toJSON(),
     })
   }
 
   async create({view}){
-    return view.render('userscreate')
+    return view.render('users/userscreate')
   }
 
   async processCreate({request,response}){
@@ -48,7 +48,7 @@ class UserController {
     let user = await Users.find(params.id);
     // let address = await Addresses.find(params.users_id)
     // let user = await address.users().with('addresses').fetch()
-    return view.render('usersupdate',{
+    return view.render('users/usersupdate',{
       'user': user.toJSON()
     })
     // return user.toJSON()
@@ -72,6 +72,13 @@ class UserController {
     // await updateAddress.save();
     // await updateUser.addresses().attach(updateAddress.id)
     response.route('show_all_users');
+  }
+
+  async delete({params}){
+    let user = await Users.find(params.id);
+    return render.view('users/usersdelete',{
+      'user': user.toJSON()
+    })
   }
 }
 
