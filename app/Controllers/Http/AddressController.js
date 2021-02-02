@@ -22,6 +22,13 @@ class AddressController {
     response.route('show_all_users');
   }
 
+  async update({view,params}){
+    let address = await Addresses.find(params.id);
+    return view.render('addresses/updateaddress', {
+      'address' : address.toJSON()
+    })
+  }
+
   async delete({params,response}){
     let address = await Addresses.find(params.id);
     await address.users().detach()
