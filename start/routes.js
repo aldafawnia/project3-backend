@@ -33,3 +33,5 @@ Route.post('/users/:id/add_address', 'AddressController.processCreate').as('add_
 Route.get('/users/:id/edit_address', 'AddressController.update')
 Route.post('/users/:id/edit_address', 'AddressController.processUpdate').as('edit_address')
 Route.get('/users/:id/delete_address', 'AddressController.delete').as('delete_address')
+
+// Products
