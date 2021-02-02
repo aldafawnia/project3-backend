@@ -1,0 +1,27 @@
+@layout('base')
+@section('content')
+
+<h1> Add Address: </h1>
+
+<form method="POST">
+{{csrFrield()}}
+  <div>
+    <label class="form-label">Building Name:</label>
+    <input type='text' name='building_name' class="form-control"/>
+    <label class="form-label">Street Name:</label>
+    <input type='text' name='street_name' class="form-control"/>
+  </div>
+  <div>
+    <label class="form-label">Unit Number:</label>
+    <input type='text' name='unit_number' class="form-control"/>
+    <label class="form-label">Postal Code:</label>
+    <input type='text' name='postal_code' class="form-control"/>
+  </div>
+  <div>
+    <label class="form-label">Country:</label>
+    <input type='text' name='country' class="form-control"/>
+  </div>
+  <input type='submit'/>
+</form>
+
+@endsection

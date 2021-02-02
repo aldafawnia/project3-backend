@@ -15,6 +15,7 @@
           <th>Email</th>
           <th>Contact Number</th>
           <th>Addresses</th>
+          <th></th>
         </tr>
         @each(user in users)
           <tr>
@@ -28,6 +29,9 @@
             <td>{{user.contact_number}}</td>
             @each(address in user.addresses)
             <td>{{address.building_name}}, {{address.street_name}}, {{address.unit_number}}, {{address.postal_code}}, {{address.country}}</td>
+            <!-- <td><a href="{{route ('')}}">
+            <button type="button" class="btn btn-primary">+</button></a>
+            </td> -->
           </tr>
         @endeach
         @endeach

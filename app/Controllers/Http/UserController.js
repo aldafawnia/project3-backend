@@ -80,6 +80,8 @@ class UserController {
       'user': user.toJSON()
     })
   }
+
+  async processDelete({ })
 }
 
 module.exports = UserController
