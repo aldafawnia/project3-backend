@@ -81,7 +81,7 @@ class UserController {
     })
   }
 
-  async processDelete({ })
+  // async processDelete({ })
 }
 
 module.exports = UserController

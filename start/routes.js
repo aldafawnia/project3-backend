@@ -33,3 +33,4 @@ Route.get('/users/:id/delete', 'UserController.delete')
 // Addresses
 
 Route.get('/users/:id/add_address', 'AddressController.create')
+Route.post('/users/:id/add_address', 'AddressController.processCreate').as('add_addresses')

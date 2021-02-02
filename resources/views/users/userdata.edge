@@ -16,6 +16,7 @@
           <th>Contact Number</th>
           <th>Addresses</th>
           <th></th>
+          <th></th>
         </tr>
         @each(user in users)
           <tr>
@@ -28,12 +29,19 @@
             <td>{{user.email}}</td>
             <td>{{user.contact_number}}</td>
             @each(address in user.addresses)
-            <td>{{address.building_name}}, {{address.street_name}}, {{address.unit_number}}, {{address.postal_code}}, {{address.country}}</td>
-            <!-- <td><a href="{{route ('')}}">
-            <button type="button" class="btn btn-primary">+</button></a>
-            </td> -->
+            <td>
+              <table class="table">
+              <tr>{{address.building_name}}, {{address.street_name}}, {{address.unit_number}}, {{address.postal_code}}, {{address.country}}</tr>
+            <!-- <td></td> -->
+
+
+              </table>
+              @endeach
+              <td>
+              <a href="{{route ('add_addresses', {id:user.id})}}">
+              <button type="button" class="btn btn-primary">+</button></a>
+              </td>
           </tr>
-        @endeach
         @endeach
 </table>
 
