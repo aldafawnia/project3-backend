@@ -21,6 +21,13 @@ class AddressController {
     await user.addresses().attach(newAddresses.id)
     response.route('show_all_users');
   }
+
+  async delete({params,response}){
+    let address = await Addresses.find(params.id);
+    await address.users().detach()
+    await address.delete()
+    response.route('show_all_users')
+  }
 }
 
 module.exports = AddressController

@@ -32,9 +32,9 @@
             <td>
               <table class="table">
               <tr>{{address.building_name}}, {{address.street_name}}, {{address.unit_number}}, {{address.postal_code}}, {{address.country}}</tr>
-            <!-- <td></td> -->
-
-
+              <td> <a href="{{ route('delete_address', {id:address.id})}}">
+              <button type="button" class="btn btn-danger">Delete</button> </a>
+              </td>
               </table>
               @endeach
               <td>
