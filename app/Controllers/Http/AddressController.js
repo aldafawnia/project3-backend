@@ -29,6 +29,18 @@ class AddressController {
     })
   }
 
+  async processUpdate({request, response, params}){
+    let updateAddress = await Addresses.find(params.id);
+    let addressData = request.post();
+    updateAddress.building_name = addressData.building_name;
+    updateAddress.street_name = addressData.street_name;
+    updateAddress.unit_number = addressData.unit_number;
+    updateAddress.postal_code = addressData.postal_code;
+    updateAddress.country = addressData.country;
+    await updateAddress.save();
+    response.route('show_all_users')
+  }
+
   async delete({params,response}){
     let address = await Addresses.find(params.id);
     await address.users().detach()
