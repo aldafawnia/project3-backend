@@ -4,6 +4,9 @@
 const Model = use('Model')
 
 class Product extends Model {
+  categories(){
+    return this.belongsToMany('App/Models/Category').pivotTable('product_categories')
+  }
 }
 
 module.exports = Product
