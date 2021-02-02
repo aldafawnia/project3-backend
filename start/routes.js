@@ -29,3 +29,7 @@ Route.get('/users/:id/update', 'UserController.update')
 Route.post('/users/:id/update', 'UserController.processUpdate').as('update_user')
 
 Route.get('/users/:id/delete', 'UserController.delete')
+
+// Addresses
+
+Route.get('/users/:id/add_address', 'AddressController.create')
