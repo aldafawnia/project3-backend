@@ -42,3 +42,4 @@ Route.get('/products/admin/create', 'ProductController.create')
 
 // Categories
 Route.get('/categories/admin', 'CategoryController.index')
+Route.get('/categories/admin/create', 'CategoryController.create')

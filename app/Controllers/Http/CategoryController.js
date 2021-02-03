@@ -12,6 +12,10 @@ class CategoryController {
     })
   }
 
+  async create({view}){
+    return view.render('categories/addcategory')
+  }
+
 
 }
 
