@@ -10,6 +10,12 @@ class ProductController {
     response.json(products)
   }
 
+  async index({view}){
+    let products = await Products.query().with('categories').fetch()
+    return view.render('products/viewproduct', {
+      'products': products.toJSON(),
+    })
+  }
 
 }
 
