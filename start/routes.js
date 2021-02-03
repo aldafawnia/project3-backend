@@ -39,3 +39,6 @@ Route.get('/products_api', 'ProductController.api')
 Route.get('/products', 'ProductController.index').as('show_all_products')
 Route.get('/products/admin', 'ProductController.adminIndex')
 Route.get('/products/admin/create', 'ProductController.create')
+
+// Categories
+Route.get('/categories/admin', 'CategoryController.index')

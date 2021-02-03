@@ -1,0 +1,23 @@
+@layout('base')
+@section('content')
+<h1> Category List </h1>
+
+<table class="table">
+        <tr>
+          <th></th>
+          <th></th>
+          <th>ID</th>
+          <th>Category</th>
+        </tr>
+        @each(c in categories)
+          <tr>
+            <td></td>
+            <td></td>
+            <td>{{c.id}}</td>
+            <td>{{c.category_name}}</td>
+            <td></td>
+          </tr>
+        @endeach
+</table>
+
+@endsection
