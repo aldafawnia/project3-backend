@@ -37,3 +37,4 @@ Route.get('/users/:id/delete_address', 'AddressController.delete').as('delete_ad
 // Products
 Route.get('/products_api', 'ProductController.api')
 Route.get('/products', 'ProductController.index').as('show_all_products')
+Route.get('/products/admin', 'ProductController.adminIndex')

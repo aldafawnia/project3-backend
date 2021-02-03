@@ -17,6 +17,13 @@ class ProductController {
     })
   }
 
+  async adminIndex({view}){
+    let products = await Products.query().with('categories').fetch()
+    return view.render('products/productdata', {
+      'products': products.toJSON(),
+    })
+  }
+
 }
 
 module.exports = ProductController

@@ -1,0 +1,34 @@
+@layout('base')
+@section('content')
+<h1> User View Product </h1>
+
+<table class="table">
+        <tr>
+          <th></th>
+          <th></th>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Description</th>
+          <th>Image</th>
+          <th>Stock</th>
+          <th>Category</th>
+          <th></th>
+        </tr>
+        @each(p in products)
+          <tr>
+            <td></td>
+            <td></td>
+            <td>{{p.id}}</td>
+            <td>{{p.product_name}}</td>
+            <td>{{p.price}}</td>
+            <td>{{p.description}}</td>
+            <td><img src='{{p.image}}'alt="image" height="140px"/></td>
+            <td>{{p.stock}}</td>
+            <td>{{p.categories[0].category_name}}</td>
+            <td></td>
+          </tr>
+        @endeach
+</table>
+
+@endsection
