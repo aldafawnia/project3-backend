@@ -35,3 +35,4 @@ Route.post('/users/:id/edit_address', 'AddressController.processUpdate').as('edi
 Route.get('/users/:id/delete_address', 'AddressController.delete').as('delete_address')
 
 // Products
+Route.get('/products_api', 'ProductController.api')
