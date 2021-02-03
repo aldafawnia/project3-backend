@@ -25,7 +25,10 @@ class ProductController {
   }
 
    async create({view}){
-    return view.render('products/adminaddproduct')
+    let category = await Categories.all()
+    return view.render('products/adminaddproduct', {
+      'category': category.toJSON()
+    })
   }
 }
 

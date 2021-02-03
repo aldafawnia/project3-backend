@@ -39,6 +39,11 @@ class CategoryController {
     response.route('show_all_categories')
   }
 
+  async delete({params,response}){
+    let category = await Categories.find(params.id);
+    await category.delete()
+    response.route('show_all_categories')
+  }
 }
 
 module.exports = CategoryController
