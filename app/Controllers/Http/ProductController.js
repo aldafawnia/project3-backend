@@ -24,6 +24,10 @@ class ProductController {
     })
   }
 
+  async create({view}){
+    return view.render('products/adminaddproduct')
+  }
+
 }
 
 module.exports = ProductController
