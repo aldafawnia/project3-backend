@@ -41,5 +41,6 @@ Route.get('/products/admin', 'ProductController.adminIndex')
 Route.get('/products/admin/create', 'ProductController.create')
 
 // Categories
-Route.get('/categories/admin', 'CategoryController.index')
+Route.get('/categories/admin', 'CategoryController.index').as('show_all_categories')
 Route.get('/categories/admin/create', 'CategoryController.create')
+Route.post('/categories/admin/create', 'CategoryController.processCreate').as('add_category')

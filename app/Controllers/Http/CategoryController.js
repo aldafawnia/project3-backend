@@ -16,6 +16,13 @@ class CategoryController {
     return view.render('categories/addcategory')
   }
 
+  async processCreate({request, response, params}){
+    let data = request.post();
+    let newCategory = new Categories();
+    newCategory.category_name = data.categoryname;
+    await newCategory.save()
+    response.route('show_all_categories')
+  }
 
 }
 
