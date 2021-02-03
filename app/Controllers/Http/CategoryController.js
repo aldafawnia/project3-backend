@@ -31,6 +31,13 @@ class CategoryController {
     })
   }
 
+  async processUpdate({request,response,params}){
+    let editCategory = await Categories.find(params.id);
+    let data = request.post();
+    editCategory.category_name = data.categoryname;
+    await editCategory.save()
+    response.route('show_all_categories')
+  }
 
 }
 

@@ -2,6 +2,10 @@
 @section('content')
 <h1> Category List </h1>
 
+<a href="{{route ('add_category')}}">
+  <button type="button" class="btn btn-primary">Add New Category</button>
+</a>
+
 <table class="table">
         <tr>
           <th></th>
@@ -11,8 +15,12 @@
         </tr>
         @each(c in categories)
           <tr>
-            <td></td>
-            <td></td>
+            <td><a href="{{route ('edit_category',{id:c.id})}}">
+            <button type="button" class="btn btn-warning">Edit</button></a>
+            </td>
+            <td><a href="{{route ('delete_category',{id:c.id})}}">
+            <button type="button" class="btn btn-danger">Delete</button></a>
+            </td>
             <td>{{c.id}}</td>
             <td>{{c.category_name}}</td>
             <td></td>
