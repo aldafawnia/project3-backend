@@ -24,6 +24,14 @@ class CategoryController {
     response.route('show_all_categories')
   }
 
+  async update({view,params}){
+    let category = await Categories.find(params.id);
+    return view.render('categories/editcategory',{
+      'category': category.toJSON()
+    })
+  }
+
+
 }
 
 module.exports = CategoryController
