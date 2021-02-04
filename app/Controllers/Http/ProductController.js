@@ -2,6 +2,7 @@
 
 const Products = use('App/Models/Product')
 const Categories = use('App/Models/Category')
+const Config = use('Config')
 
 class ProductController {
   async api({response,params}){
@@ -27,9 +28,14 @@ class ProductController {
    async create({view}){
     let category = await Categories.all()
     return view.render('products/adminaddproduct', {
-      'category': category.toJSON()
+      'category': category.toJSON(),
+      'cloudinaryName': Config.get('cloudinary.name'),
+      'cloudinaryApiKey': Config.get('cloudinary.api_key'),
+      'cloudinaryPreset': Config.get('cloudinary.preset'),
+      'sign_url': '/cloudinary/sign'
     })
   }
+
 }
 
 module.exports = ProductController

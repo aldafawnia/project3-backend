@@ -16,6 +16,7 @@
     <label class="form-label">Description:</label>
     <input type='text' name='description' class="form-control"/>
   </div>
+  <br>
   <div>
     <label class='form-label'>Categories:</label>
     <select name="category">
@@ -25,14 +26,59 @@
    </select>
   </div>
   <div>
-    <label class="form-label">Image:</label>
-    <input type='password' name='image' class="form-control"/>
-  </div>
-  <div>
     <label class="form-label">Stock:</label>
     <input type='text' name='stock' class="form-control"/>
   </div>
+  <br>
+  <div>
+    <button type='button' class='btn btn-primary' id='upload_widget'>Upload Image</button>
+    <input type='hidden' name='image' class="form-control" id="image_url"/>
+  </div>
+  <div id='preview-image' style='display:none'>
+    <br>
+    <label class='form-label'>Image Uploaded</label>
+    <br>
+    <img src="" id="image_uploaded" height="140px"/>
+  </div>
+  <br>
   <input type='submit'/>
 </form>
 
+@endsection
+
+@section('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous"></script>
+<script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
+
+<script>
+  function generateSignature(callback,params_to_sign){
+      axios.get('{{sign_url}}', {
+        params:{
+          params_to_sign
+        }
+      }).then(function(response){
+        callback(response.data)
+      })
+    }
+
+    let myWidget = cloudinary.createUploadWidget({
+      cloudName:'{{cloudinaryName}}',
+      apiKey:'{{cloudinaryApiKey}}',
+      uploadPreset:'{{cloudinaryPreset}}',
+      uploadSignature:generateSignature
+    }, (error,result)=> {
+      if(!error && result && result.event === 'success'){
+        console.log("Upload Successful!")
+        console.log(result.info)
+        document.querySelector('#image_url').value = result.info.url
+        document.querySelector('#preview-image').style.display = "block"
+        document.querySelector('#image_uploaded').src = result.info.url
+      }
+    })
+
+    document.querySelector('#upload_widget').addEventListener('click', function(){
+      myWidget.open()
+    },false)
+
+</script>
 @endsection
