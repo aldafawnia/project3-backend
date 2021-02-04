@@ -13,6 +13,7 @@ class CategoryController {
   }
 
   async create({view}){
+    // let categories = await Categories.all()
     return view.render('categories/addcategory')
   }
 

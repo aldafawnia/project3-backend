@@ -18,12 +18,12 @@
   </div>
   <br>
   <div>
-    <label class='form-label'>Categories:</label>
-    <select name="category">
-     @each(c in category)
-     <option value="{{c.id}}">{{c.category_name}}</option>
-     @endeach
-   </select>
+    <label class="form-label">Categories:</label>
+    <select class="tags form-control" name="category[]" multiple="multiple">
+      @each(c in category)
+        <option value="{{c.id}}">{{c.category_name}}</option>
+      @endeach
+    </select>
   </div>
   <div>
     <label class="form-label">Stock:</label>
@@ -81,4 +81,11 @@
     },false)
 
 </script>
+
+<script>
+    $(document).ready(function() {
+      $('.tags').select2();
+    });
+</script>
+
 @endsection

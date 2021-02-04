@@ -34,6 +34,24 @@ class ProductController {
       'cloudinaryPreset': Config.get('cloudinary.preset'),
       'sign_url': '/cloudinary/sign'
     })
+    }
+
+    async processCreate({request,response}){
+    let productData = request.post();
+    console.log(productData.category)
+    let newProduct = new Products();
+    newProduct.product_name = productData.productname
+    newProduct.price = productData.price*100
+    newProduct.description = productData.description
+    newProduct.image = productData.image
+    newProduct.stock = productData.stock
+    await newProduct.save()
+
+    for(let c of productData.category){
+      await newProduct.categories().attach(c)
+    }
+
+    response.route('show_all_products')
   }
 
 }

@@ -25,7 +25,10 @@
             <td>{{p.description}}</td>
             <td><img src='{{p.image}}'alt="image" height="140px"/></td>
             <td>{{p.stock}}</td>
-            <td>{{p.categories[0].category_name}}</td>
+            <td>@each(c in p.categories)
+            {{c.category_name}}
+            @endeach
+            </td>
             <td></td>
           </tr>
         @endeach
