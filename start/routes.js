@@ -39,6 +39,7 @@ Route.get('/products_api', 'ProductController.api')
 Route.get('/products', 'ProductController.index').as('show_all_products')
 Route.get('/products/admin', 'ProductController.adminIndex')
 Route.get('/products/admin/create', 'ProductController.create')
+Route.post('/products/admin/create', 'ProductController.processCreate')
 
 // Categories
 Route.get('/categories/admin', 'CategoryController.index').as('show_all_categories')
@@ -47,3 +48,6 @@ Route.post('/categories/admin/create', 'CategoryController.processCreate').as('a
 Route.get('/categories/admin/:id/edit_category', 'CategoryController.update')
 Route.post('/categories/admin/:id/edit_category', 'CategoryController.processUpdate').as('edit_category')
 Route.get('/categories/admin/:id/delete_category', 'CategoryController.delete').as('delete_category')
+
+// Cloudinary
+Route.get('/cloudinary/sign', 'CloudinaryController.sign').as('cloudinary_sign')
