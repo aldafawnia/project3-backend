@@ -37,9 +37,10 @@ Route.get('/users/:id/delete_address', 'AddressController.delete').as('delete_ad
 // Products
 Route.get('/products_api', 'ProductController.api')
 Route.get('/products', 'ProductController.index').as('show_all_products')
-Route.get('/products/admin', 'ProductController.adminIndex')
+Route.get('/products/admin', 'ProductController.adminIndex').as('admin_productlist')
 Route.get('/products/admin/create', 'ProductController.create')
 Route.post('/products/admin/create', 'ProductController.processCreate')
+Route.get('/products/admin/:id/edit_product', 'ProductController.update')
 
 // Categories
 Route.get('/categories/admin', 'CategoryController.index').as('show_all_categories')

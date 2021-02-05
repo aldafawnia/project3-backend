@@ -51,9 +51,28 @@ class ProductController {
       await newProduct.categories().attach(c)
     }
 
-    response.route('show_all_products')
+    response.route('admin_productlist')
   }
 
+  async update({view,params}){
+    let product = await Products.find(params.id);
+    let productCategory = await product.categories().with('products').fetch()
+    let categories = await Categories.all()
+    let cArray = []
+    for (let pc of productCategory.toJSON()) {
+        cArray.push(pc.id)
+    }
+    return view.render('products/admineditproduct',{
+      'product': product.toJSON(),
+      'productCategory': productCategory.toJSON(),
+      'categories': categories.toJSON(),
+      'cArray' : cArray,
+      'cloudinaryName': Config.get('cloudinary.name'),
+      'cloudinaryApiKey': Config.get('cloudinary.api_key'),
+      'cloudinaryPreset': Config.get('cloudinary.preset'),
+      'sign_url': '/cloudinary/sign'
+    })
+  }
 }
 
 module.exports = ProductController
