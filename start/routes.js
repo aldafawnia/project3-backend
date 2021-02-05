@@ -41,6 +41,7 @@ Route.get('/products/admin', 'ProductController.adminIndex').as('admin_productli
 Route.get('/products/admin/create', 'ProductController.create')
 Route.post('/products/admin/create', 'ProductController.processCreate')
 Route.get('/products/admin/:id/edit_product', 'ProductController.update')
+Route.post('/products/admin/:id/edit_product', 'ProductController.processUpdate').as('admin_editproduct')
 
 // Categories
 Route.get('/categories/admin', 'CategoryController.index').as('show_all_categories')

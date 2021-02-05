@@ -73,6 +73,47 @@ class ProductController {
       'sign_url': '/cloudinary/sign'
     })
   }
+
+  async processUpdate({request,response,params,session}){
+    let product = await Products.find(params.id);
+    let productCategory = await product.categories().with('products').fetch()
+    let productData = request.post()
+    product.product_name = productData.productname
+    product.price = productData.price*100
+    product.description = productData.description
+    product.image = productData.image
+    product.stock = productData.stock
+    await product.save();
+
+    let cArray = []
+    for (let pc of productCategory.toJSON()) {
+      cArray.push(pc.id)
+    }
+
+    let newCategory = []
+    for (let c of productData.category) {
+      newCategory.push(parseInt(c))
+    }
+
+    for (let ca of cArray) {
+      if (!newCategory.includes(parseInt(ca))) {
+        await product.categories().detach(ca)
+      }
+    }
+
+    for (let nc of newCategory) {
+      if (newCategory.length !== 0) {
+        if (!cArray.includes(parseInt(nc))) {
+          await product.categories().attach(nc)
+        }
+      } else {
+        await product.categories().attach(nc)
+      }
+    }
+
+    return response.route('admin_productlist')
+  }
+
 }
 
 module.exports = ProductController
