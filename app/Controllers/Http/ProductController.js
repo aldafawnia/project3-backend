@@ -114,6 +114,14 @@ class ProductController {
     return response.route('admin_productlist')
   }
 
+  async delete({params,response}){
+    let product = await Products.find(params.id)
+    await product.categories().detach()
+    await product.delete()
+    response.route('admin_productlist')
+  }
+
+
 }
 
 module.exports = ProductController

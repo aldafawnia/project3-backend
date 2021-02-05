@@ -39,9 +39,10 @@ Route.get('/products_api', 'ProductController.api')
 Route.get('/products', 'ProductController.index').as('show_all_products')
 Route.get('/products/admin', 'ProductController.adminIndex').as('admin_productlist')
 Route.get('/products/admin/create', 'ProductController.create')
-Route.post('/products/admin/create', 'ProductController.processCreate')
+Route.post('/products/admin/create', 'ProductController.processCreate').as('admin_addproduct')
 Route.get('/products/admin/:id/edit_product', 'ProductController.update')
 Route.post('/products/admin/:id/edit_product', 'ProductController.processUpdate').as('admin_editproduct')
+Route.get('/products/admin/:id/delete_product', 'ProductController.delete').as('admin_deleteproduct')
 
 // Categories
 Route.get('/categories/admin', 'CategoryController.index').as('show_all_categories')

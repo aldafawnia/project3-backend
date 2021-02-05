@@ -2,6 +2,10 @@
 @section('content')
 <h1> User View Product </h1>
 
+<a href="{{route ('admin_addproduct')}}">
+  <button type="button" class="btn btn-primary">Add Product</button>
+</a>
+
 <table class="table">
         <tr>
           <th></th>
@@ -17,8 +21,10 @@
         </tr>
         @each(p in products)
           <tr>
-            <td></td>
-            <td></td>
+            <td><a href="{{ route('admin_editproduct', {id:p.id})}}">
+            <button type="button" class="btn btn-warning">Edit</button> </a></td>
+            <td><a href="{{ route('admin_deleteproduct', {id:p.id})}}">
+            <button type="button" class="btn btn-danger">Delete</button> </a></td>
             <td>{{p.id}}</td>
             <td>{{p.product_name}}</td>
             <td>${{p.price/100}}</td>
