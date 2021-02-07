@@ -121,7 +121,6 @@ class ProductController {
     response.route('admin_productlist')
   }
 
-
 }
 
 module.exports = ProductController

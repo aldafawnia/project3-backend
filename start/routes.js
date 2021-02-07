@@ -18,6 +18,10 @@ const Route = use('Route')
 
 Route.on('/').render('welcome')
 
+//  Admin
+Route.get('/admin/register', 'AdminController.register')
+Route.post('/admin/register', 'AdminController.processRegister')
+
 // Users
 Route.get('/users_api', 'UserController.api')
 Route.get('/users', 'UserController.index').as('show_all_users')
