@@ -18,7 +18,7 @@ const Route = use('Route')
 
 Route.on('/').render('welcome')
 
-//  Admin
+// Admin
 Route.get('/admin/register', 'AdminController.register').as('admin_register')
 Route.post('/admin/register', 'AdminController.processRegister')
 Route.get('/admin', 'AdminController.login').as('admin_login')

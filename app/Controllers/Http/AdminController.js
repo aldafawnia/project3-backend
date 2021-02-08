@@ -1,6 +1,8 @@
 'use strict'
 
+const { validateAll } = use('Validator')
 const Admin = use('App/Models/Admin')
+const Hash = use('Hash')
 
 class AdminController {
 
@@ -9,7 +11,27 @@ class AdminController {
   }
 
   async processRegister({request,response, session}){
-    let formData = request.post()
+    const rules = {
+    username: 'required|unique:admins',
+    password: 'required|confirmed|min:8',
+    }
+
+    const messages = {
+    'username.required': 'Please provide username',
+    'username.unique': 'Username already exist',
+    'password.required': 'Please provide password',
+    'password.min': 'Password is less than 8 characters',
+    'password.confirmed': 'Password does not match',
+    }
+
+    let formData = request.post();
+    const validation = await validateAll(formData, rules, messages)
+    if (validation.fails()) {
+      session
+        .withErrors(validation.messages())
+        .flashAll()
+      return response.redirect('back')
+    }
     let newAdmin = new Admin()
     newAdmin.username = formData.username
     newAdmin.password = formData.password
