@@ -23,6 +23,7 @@ Route.get('/admin/register', 'AdminController.register').as('admin_register')
 Route.post('/admin/register', 'AdminController.processRegister')
 Route.get('/admin', 'AdminController.login').as('admin_login')
 Route.post('/admin', 'AdminController.processLogin')
+Route.get('/admin/logout', 'AdminController.logout').as('admin_logout')
 
 // Users
 Route.get('/users_api', 'UserController.api')

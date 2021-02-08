@@ -30,7 +30,10 @@ class AdminController {
     response.route('admin_productlist')
   }
 
-
+  async logout({auth, response}){
+    await auth.logout()
+    response.route('admin_login')
+  }
 }
 
 module.exports = AdminController
