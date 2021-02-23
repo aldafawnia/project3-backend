@@ -90,6 +90,14 @@ class UserController {
     }
     response.route('show_all_users');
   }
+
+  async login({request, response, auth}) {
+    let data = request.post();
+    let uid = data.email;
+    let password = data.password;
+    let token = await auth.authenticator('api').attempt(uid, password)
+    return response.json(token);
+  }
 }
 
 module.exports = UserController

@@ -46,10 +46,30 @@ class AdminController {
 
   async processLogin({auth,response,request,session}){
     let formData = request.post();
-    await auth.authenticator('admin').attempt(formData.username, formData.password)
-    // await auth.attempt(formData.username, formData.password);
-    session.flash({ notification: `You are now logged in to ${formData.username}` });
-    response.route('admin_productlist')
+    let adminlogin = await Admin.findBy('username', formData.username)
+    await Hash.verify('plain-value','hashed-value')
+    if(!adminlogin){
+      session
+        .withErrors({username:'Invalid username'})
+        .flashAll()
+     return response.redirect('back')
+    }
+    else{
+      let admin_login = adminlogin.toJSON()
+      let verifyPassword = await Hash.verify(formData.password,admin_login.password)
+      if(!verifyPassword){
+        session
+          .withErrors({password:'Incorrect password'})
+          .flashAll()
+        return response.redirect('back')
+      }
+      else{
+        await auth.authenticator('admin').attempt(formData.username, formData.password)
+        // await auth.attempt(formData.username, formData.password);
+        session.flash({ notification: `You are now logged in to ${formData.username}` });
+        response.route('admin_productlist')
+      }
+    }
   }
 
   async logout({auth, response}){

@@ -34,6 +34,8 @@ Route.get('/users/:id/update', 'UserController.update')
 Route.post('/users/:id/update', 'UserController.processUpdate').as('update_user')
 Route.get('/users/:id/delete', 'UserController.delete').as('delete_user')
 
+Route.post('api/user/login', 'UserController.login');
+
 // Addresses
 Route.get('/users/:id/add_address', 'AddressController.create')
 Route.post('/users/:id/add_address', 'AddressController.processCreate').as('add_addresses')
@@ -44,7 +46,7 @@ Route.get('/users/:id/delete_address', 'AddressController.delete').as('delete_ad
 // Products
 Route.get('/products_api', 'ProductController.api')
 Route.get('/products', 'ProductController.index').as('show_all_products')
-Route.get('/products/admin', 'ProductController.adminIndex').as('admin_productlist')
+Route.get('/products/admin', 'ProductController.adminIndex').as('admin_productlist').middleware('auth:admin')
 Route.get('/products/admin/create', 'ProductController.create')
 Route.post('/products/admin/create', 'ProductController.processCreate').as('admin_addproduct')
 Route.get('/products/admin/:id/edit_product', 'ProductController.update')
